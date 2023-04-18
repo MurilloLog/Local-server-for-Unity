@@ -15,25 +15,25 @@ using System.Text;
 public class Events : MonoBehaviour
 {
     public Networking networkBehaviour;
-    public ConectionStatus conectionStatus;
+    //public ConectionStatus conectionStatus;
     
-    public string id = "";
+    public string id = "";  // _id assigned by the server
     public bool readingFromServer = false;
     public bool writingToServer = false;
-    public bool searchingRoom = false;
-    public bool searchingPlayer = false;
-    public bool paired = false;
+    //public bool searchingRoom = false;
+    //public bool searchingPlayer = false;
+    //public bool paired = false;
     public bool error = false;
-    public bool updatingPlayerPose = false;
-    public bool updatingObjectPose = false;
-    public bool targetIsFound = false;
+    //public bool updatingPlayerPose = false;
+    //public bool updatingObjectPose = false;
+    //public bool targetIsFound = false;
 
-    public SearchRoom searchRoom = new SearchRoom();
-    public PlayerPose playerPose = new PlayerPose();
-    public ObjectPose objectPose = new ObjectPose();
+    //public SearchRoom searchRoom = new SearchRoom();
+    //public PlayerPose playerPose = new PlayerPose();
+    //public ObjectPose objectPose = new ObjectPose();
     //public ObjectPose objectPose;
-    public GameObject playerFrame;
-    public GameObject objectPrefab;
+    //public GameObject playerFrame;
+    //public GameObject objectPrefab;
 
     public string JSONPackage = "";
     public JsonData JSONPackageReceived = new JsonData();
@@ -41,14 +41,14 @@ public class Events : MonoBehaviour
     void Awake()
     {
         networkBehaviour = FindObjectOfType<Networking>();
-        conectionStatus = FindObjectOfType<ConectionStatus>();
-        networkBehaviour.IP = "127.0.0.1";
-        networkBehaviour.PORT = 8080;
-        conectionStatus.playerIsAlone = false;
-        conectionStatus.playerIsWaiting = true;
+        //conectionStatus = FindObjectOfType<ConectionStatus>();
+        networkBehaviour.IP = "127.0.0.1"; // Server IP address
+        networkBehaviour.PORT = 8080; // Server port
+        //conectionStatus.playerIsAlone = false;
+        //conectionStatus.playerIsWaiting = true;
     }
 
-    public void changeTargetStatus() { targetIsFound = !targetIsFound; }
+    //public void changeTargetStatus() { targetIsFound = !targetIsFound; }
 
     // Receive a command from server and do ...
     public void readAction(string JsonFromServer)
@@ -59,12 +59,12 @@ public class Events : MonoBehaviour
             id = JsonFromServer.Replace("id: ", "");
             Debug.Log("Player ID from server received");
             Debug.Log("My player ID is: " + id);
-            searchingRoom = true;
-            searchRoom.setCommand("SEARCH_ROOM");
-            searchRoom.setPlayerID(id);
-            JSONPackage = JsonUtility.ToJson(searchRoom, true);
-            Debug.Log("The message to send is: " + JSONPackage);
-            sendRoomAction(JSONPackage);
+            //searchingRoom = true;
+            //searchRoom.setCommand("SEARCH_ROOM");
+            //searchRoom.setPlayerID(id);
+            //JSONPackage = JsonUtility.ToJson(searchRoom, true);
+            //Debug.Log("The message to send is: " + JSONPackage);
+            //sendRoomAction(JSONPackage);
         }
         else
         {
@@ -72,38 +72,33 @@ public class Events : MonoBehaviour
             JSONPackageReceived = JsonUtility.FromJson<JsonData>(JsonFromServer);
             switch (JSONPackageReceived.getCommand())
             {
-                case "WAITING_PLAYER":
-                    searchingPlayer = true;
-                    paired = false;
-                    conectionStatus.playerIsWaiting = true;
-                    Debug.Log("Waiting player...");
+                case "MESSAGE_FROM_SERVER_1":
+                    //searchingPlayer = true;
+                    //paired = false;
+                    //conectionStatus.playerIsWaiting = true;
+                    Debug.Log("I've received the message 1...");
                 break;
 
-                case "ROOM_CREATED":
-                    paired = true;
-                    searchingPlayer = false;
-                    searchingRoom = false;
-                    conectionStatus.playerIsWaiting = false;
-                    Debug.Log("Room created and players paired...");
+                case "MESSAGE_FROM_SERVER_2":
+                    //paired = true;
+                    //searchingPlayer = false;
+                    //searchingRoom = false;
+                    //conectionStatus.playerIsWaiting = false;
+                    Debug.Log("I've received the message 2...");
                 break;
 
-                case "UPDATE_PLAYER_POSE":
+                case "MESSAGE_FROM_SERVER_3":
                     //Debug.Log("Posicion: " + JSONPackageReceived.getPosition());
                     //Debug.Log("Rotacion: " + JSONPackageReceived.getRotation());
-                    updatingPlayerPose = true;
-                    Debug.Log("The other player update its pose:");
+                    //updatingPlayerPose = true;
+                    Debug.Log("I've received the message 3...");
                 break;
 
-                case "UPDATE_OBJECT_POSE":
-                    updatingObjectPose = true;
-                    UpdateEnvironment();
-                    Debug.Log("Updating object pose from server...");
-                    updatingObjectPose = false;
-                break;
-
-                case "PLAYER_OFFLINE":
-                    conectionStatus.playerIsAlone = true;
-                    Debug.Log("The other player is offline...");
+                case "MESSAGE_FROM_SERVER_N":
+                    //updatingObjectPose = true;
+                    //UpdateEnvironment();
+                    Debug.Log("I've received the message N...");
+                    //updatingObjectPose = false;
                 break;
 
                 default:
@@ -156,14 +151,14 @@ public class Events : MonoBehaviour
                 readingFromServer = true;
                 networkBehaviour.stream.BeginRead(networkBehaviour.data, 0, networkBehaviour.data.Length, new AsyncCallback(endReadingProcess), networkBehaviour.stream);
             }
-            else
+            /*else
             {
                 if (paired && targetIsFound)
                 {
                     UpdatePlayerPose();
                     //UpdateEnvironment();
                 }
-            }
+            }*/
         }
     }
 

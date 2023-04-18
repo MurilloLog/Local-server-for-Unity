@@ -32,12 +32,12 @@ public class Networking : MonoBehaviour
             {
                 isRunning = true;
                 stream = client.GetStream();
-                //Debug.Log("The app is connected to server");
+                Debug.Log("The App is connected to server");
             }
             else
             {
                 isRunning = false;
-                //Debug.Log("The app is not connected to server");
+                Debug.Log("The App is not connected to server");
             }
         });
     }
