@@ -140,7 +140,7 @@ server.listen(PORT, () =>
     console.log("Server is running on port: " + PORT);
     console.log("Waiting for users...");
 
-    if(searchRoom.size >= 2)
+    if(searchRoom.size >= 1)
     {
         // List of players
         searchRoom.forEach(j => 
