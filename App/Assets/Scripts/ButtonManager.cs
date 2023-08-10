@@ -23,6 +23,11 @@ public class ButtonManager : MonoBehaviour
         SceneManager.LoadScene("CRoom");
     }
 
+    public void GoHome()
+    {
+        SceneManager.LoadScene("Home");
+    }
+
     /* CRoom activity */
     public void CRoom2Host()
     {

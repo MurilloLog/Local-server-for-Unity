@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CRoom.unity
     guid: 91b3ff0c5c5349a4398266fad8c5f17b
+  - enabled: 1
+    path: Assets/Scenes/Host.unity
+    guid: 639db1a832cb4b3419e56a9fe33c8ce6
   m_configObjects: {}
