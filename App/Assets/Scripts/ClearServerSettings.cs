@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class ClearServerSettings : MonoBehaviour
 {
-    public static ServerSettings serverSettings;
-
-    void Awake()
-    {
-        if(serverSettings==null || serverSettings!=this)
-            Destroy(gameObject);
-    }
+    public GameObject serverSettings;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        serverSettings = GameObject.Find("ServerSettings");
+        if(serverSettings!=null)
+            Destroy(serverSettings);
     }
 
     // Update is called once per frame
