@@ -15,6 +15,7 @@ using System.Text;
 public class Events : MonoBehaviour
 {
     public Networking networkBehaviour;
+    public ServerSettings serverSettings;
     
     public string id = "";  // _id assigned by the server
     public bool readingFromServer = false;
@@ -27,8 +28,9 @@ public class Events : MonoBehaviour
     void Awake()
     {
         networkBehaviour = FindObjectOfType<Networking>();
-        networkBehaviour.IP = "127.0.0.1"; // Server IP address
-        networkBehaviour.PORT = 8080; // Server port
+        serverSettings = GameObject.Find("ServerSettings").GetComponent<ServerSettings>();
+        networkBehaviour.IP = serverSettings.GetIP(); // Server IP address
+        networkBehaviour.PORT = serverSettings.GetPort(); // Server port
     }
 
     // Receive a command from server and do ...

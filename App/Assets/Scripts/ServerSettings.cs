@@ -7,7 +7,7 @@ public class ServerSettings : MonoBehaviour
     public static ServerSettings serverSettings;
     public bool isHost; 
     public string IP;
-    public string port;
+    public int port;
     public string inviteCode;
     private string input;
 
@@ -38,7 +38,11 @@ public class ServerSettings : MonoBehaviour
 
     public void ReadIPInput(string strIP) { IP = strIP; }
 
-    public void ReadPortInput(string strPort) { port = strPort; }
+    public void ReadPortInput(string strPort) { port = int.Parse(strPort); }
 
     public void ReadInviteCodeInput(string strIC) { inviteCode = strIC; }
+
+    public string GetIP() { return IP; }
+    public int GetPort() { return port; }
+    public string GetInviteCode() { return inviteCode; }
 }
