@@ -16,12 +16,18 @@ public class Events : MonoBehaviour
 {
     public Networking networkBehaviour;
     public ServerSettings serverSettings;
-    
+    public ConectionStatus conectionStatus;
+
     public string id = "";  // _id assigned by the server
     public bool readingFromServer = false;
     public bool writingToServer = false;
+    public bool searchingRoom = false;
+    public bool searchingPlayer = false;
+    public bool paired = false;
     public bool error = false;
     
+    public SearchRoom searchRoom = new SearchRoom();
+
     public string JSONPackage = "";
     public JsonData JSONPackageReceived = new JsonData();
 
@@ -31,6 +37,9 @@ public class Events : MonoBehaviour
         serverSettings = GameObject.Find("ServerSettings").GetComponent<ServerSettings>();
         networkBehaviour.IP = serverSettings.GetIP(); // Server IP address
         networkBehaviour.PORT = serverSettings.GetPort(); // Server port
+        conectionStatus = FindObjectOfType<ConectionStatus>();
+        conectionStatus.playerIsAlone = false;
+        conectionStatus.playerIsWaiting = true;
     }
 
     // Receive a command from server and do ...
@@ -42,6 +51,12 @@ public class Events : MonoBehaviour
             id = JsonFromServer.Replace("id: ", "");
             Debug.Log("Player ID from server received");
             Debug.Log("My player ID is: " + id);
+            searchingRoom = true;
+            searchRoom.setCommand("SEARCH_ROOM");
+            searchRoom.setPlayerID(id);
+            JSONPackage = JsonUtility.ToJson(searchRoom, true);
+            Debug.Log("El Json que se envia es: " + JSONPackage);
+            sendRoomAction(JSONPackage);
         }
         else
         {
@@ -49,6 +64,21 @@ public class Events : MonoBehaviour
             JSONPackageReceived = JsonUtility.FromJson<JsonData>(JsonFromServer);
             switch (JSONPackageReceived.getCommand())
             {
+                case "WAITING_PLAYER":
+                    searchingPlayer = true;
+                    paired = false;
+                    conectionStatus.playerIsWaiting = true;
+                    Debug.Log("Waiting player...");
+                break;
+
+                case "ROOM_CREATED":
+                    paired = true;
+                    searchingPlayer = false;
+                    searchingRoom = false;
+                    conectionStatus.playerIsWaiting = false;
+                    Debug.Log("Room created and players paired...");
+                break;
+
                 case "MESSAGE_FROM_SERVER_1":
                     Debug.Log("I've received the message 1...");
                 break;
