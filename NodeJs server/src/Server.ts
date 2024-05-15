@@ -5,6 +5,8 @@ import Message from "./models/Message";
 
 let databaseConfig = new mongo();
 
+const PORT = 8080;
+
 // List of all players searching for a room
 let players: Array<IPlayer> = [];
 let searchRoom: Map<String, IPlayer> = new Map<String, IPlayer>();
@@ -62,7 +64,7 @@ let server = net.createServer(socket =>
                     case actions.MESSAGE_FROM_SERVER_2:
                         try
                         {
-                            message._id      = jsonData._id;
+                            message._id              = jsonData._id;
                             message.objectAttribute1 = jsonData.objectAttribute1;
                             message.objectAttribute2 = jsonData.objectAttribute2;
                             message.objectAttribute3 = jsonData.objectAttribute3;
@@ -129,14 +131,13 @@ let server = net.createServer(socket =>
         });
 });
 
-const PORT = 8080;
 
 /**** Process to start server ****/
 server.listen(PORT, () =>
 {
-    //console.log("Conecting to mongo database... ");
+    console.log("Conecting to mongo database... ");
     //mongoose.connect(`mongodb:\/\/${databaseConfig.host}/${databaseConfig.db}`);
-    //console.log("Successful connection.");
+    console.log("Successful connection.");
     console.log("Server is running on port: " + PORT);
     console.log("Waiting for users...");
 
