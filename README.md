@@ -4,7 +4,7 @@ This repository describes how to configure and use a local server for Unity usin
 The project is divided in two sections: the local server configuration (_NodeJs server folder_) and the app design (_App folder_). In each folder you will find complete instructions on how to configure all the necessary modules, but it's important to know that you have to satisfies the following:
 
 ## Requirements
-### [Server](./"NodeJs server"/README.md)
+### [Server](./NodeJs%20server/README.md)
 - **Ubuntu 20.04 or later**. The operating system is irrelevant for running the server. You can perform the tests on Linux, Windows, or Mac; however, the setup instructions will be developed for this Ubuntu version.
 - **NodeJs**. It is used to facilitate server functions such as reading and sending messages.
 - **Typescript**. Programming language selected to program the functionalities and operations of the server.
