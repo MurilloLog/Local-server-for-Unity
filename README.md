@@ -4,7 +4,7 @@ This repository describes how to configure and use a local server for Unity usin
 The project is divided in two sections: the local server configuration (_NodeJs server folder_) and the app design (_App folder_). In each folder you will find complete instructions on how to configure all the necessary modules, but it's important to know that you have to satisfies the following:
 
 ## Requirements
-### [Server](./Server/SERVER.md)
+### [Server](./"NodeJs server"/README.md)
 - **Ubuntu 20.04 or later**. The operating system is irrelevant for running the server. You can perform the tests on Linux, Windows, or Mac; however, the setup instructions will be developed for this Ubuntu version.
 - **NodeJs**. It is used to facilitate server functions such as reading and sending messages.
 - **Typescript**. Programming language selected to program the functionalities and operations of the server.
@@ -12,7 +12,7 @@ The project is divided in two sections: the local server configuration (_NodeJs 
 - **Typegoose**. Library based on mongoose that facilitates the integration of its syntax using Typescript.
 - **MongoDB**. NoSQL database system used to store the objects created in the mobile application.
 - **JSON**. Object notation used for sending messages.
-### [App](./App/APP.md)
+### [App](./App/README.md)
 - **Unity**. Cross-platform game engine used to create the mobile app.
 - **.NET**. Platform used for message control between the server and the mobile application.
 
