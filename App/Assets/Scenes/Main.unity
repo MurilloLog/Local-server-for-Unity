@@ -2052,7 +2052,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 342167686}
   m_Direction: 0
   m_Value: 0
-  m_Size: 0.630219
+  m_Size: 0.63021904
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2342,7 +2342,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1446522540}
         m_TargetAssemblyTypeName: ButtonManager, Assembly-CSharp
-        m_MethodName: home2Type1
+        m_MethodName: home2Lobby
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

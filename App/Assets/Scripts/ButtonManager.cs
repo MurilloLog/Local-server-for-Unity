@@ -12,6 +12,11 @@ public class ButtonManager : MonoBehaviour
     void Update() { }
 
     /* Main activity */
+    public void home2Lobby()
+    {
+        SceneManager.LoadScene("Lobby");
+    }
+    
     public void home2Type1()
     {
         SceneManager.LoadScene("Type1");
